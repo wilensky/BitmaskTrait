@@ -144,6 +144,6 @@ trait BitmaskTrait
      */
     protected function manageMaskBit(int $mask, int $p, bool $flag = true): int
     {
-        return $this->{$flag === true ? 'setBit' : 'unsetBit'}((int)$mask, $p);
+        return $this->{$flag === true ? 'setBit' : 'unsetBit'}($mask, $p);
     }
 }
