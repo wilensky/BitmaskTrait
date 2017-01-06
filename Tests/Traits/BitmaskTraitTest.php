@@ -4,12 +4,11 @@ declare(strict_types = 1);
 namespace Wilensky\Tests\Traits;
 
 use Wilensky\Traits\BitmaskTrait;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @author Gregg Wilensky <https://github.com/wilensky/>
  */
-final class BitmaskTraitTest extends TestCase
+final class BitmaskTraitTest extends \PHPUnit_Framework_TestCase
 {
     use BitmaskTrait;
 
