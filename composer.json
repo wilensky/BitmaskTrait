@@ -1,0 +1,33 @@
+{
+    "name": "wilensky/bitmask-trait",
+    "type": "library",
+    "description": "Universal PHP7 trait that provides easy bitmask management and integration",
+    "keywords": ["bit", "bitmask", "trait", "binary", "bitwise", "php", "php7", "state"],
+    "homepage": "https://github.com/wilensky/BitmaskTrait",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "G. Wilensky"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/wilensky/BitmaskTrait/issues",
+        "wiki": "https://github.com/wilensky/BitmaskTrait/wiki"
+    },
+    "require": {
+        "php": ">=7.0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wilensky\\Traits\\": ""
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": ">=4.0"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Wilensky\\Tests\\": "Tests"
+        }
+    }
+}
