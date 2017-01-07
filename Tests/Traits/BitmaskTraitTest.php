@@ -72,20 +72,22 @@ final class BitmaskTraitTest extends \PHPUnit_Framework_TestCase
             );
         }
     }
-
+    
     public function testGetPositionBitmask()
     {
-        $this->assertEquals(1, self::getPositionBitmask(0));
-        $this->assertEquals(2, self::getPositionBitmask(1));
-        $this->assertEquals(4, self::getPositionBitmask(2));
-        $this->assertEquals(8, self::getPositionBitmask(3));
-        $this->assertEquals(16, self::getPositionBitmask(4));
-        $this->assertEquals(32, self::getPositionBitmask(5));
-        $this->assertEquals(64, self::getPositionBitmask(6));
-        $this->assertEquals(128, self::getPositionBitmask(7));
-        $this->assertEquals(256, self::getPositionBitmask(8));
-        $this->assertEquals(512, self::getPositionBitmask(9));
-        $this->assertEquals(1024, self::getPositionBitmask(10));
+        $decs = [
+            1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768
+        ];
+        
+        $bits = count($decs);
+        
+        for ($bit=0; $bit < $bits; $bit++) {
+            $this->assertEquals(
+                $decs[$bit],
+                self::getPositionBitmask($bit),
+                'Failed asserting that bit #'.$bit.' equals '.$decs[$bit]
+            );
+        }
     }
     
     public function positionsBitmaskDP(): array
