@@ -3,7 +3,9 @@ declare(strict_types = 1);
 
 namespace Wilensky\Tests\Traits;
 
-use Wilensky\Traits\BitmaskTrait;
+use Wilensky\Traits\{
+    BitmaskTrait, Exceptions\BitAddressingException as BAE
+};
 
 /**
  * @author Gregg Wilensky <https://github.com/wilensky/>
@@ -119,5 +121,29 @@ final class BitmaskTraitTest extends \PHPUnit_Framework_TestCase
             forward_static_call_array([$this, 'getPositionsBitmask'], $bits),
             'Failed asserting that compiled mask `'.$mask.'` equals to expected'
         );
+    }
+    
+    public function bitRangeDP(): array
+    {
+        return [
+            [0, 0, 5],
+            [3, 0, 5],
+            [5, 0, 5],
+            [6, 0, 5, false],
+            [20, 20, 32],
+            [32, 20, 32],
+            [25, 20, 32],
+            [33, 20, 32, false],
+            [9, 20, 32, false],
+        ];
+    }
+    
+    /**
+     * @dataProvider bitRangeDP
+     */
+    public function testCheckBitInRange(int $bit, int $start, int $end, bool $isInRange = true)
+    {
+        $isInRange ? null : $this->setExpectedException(BAE::class) ;
+        $this->checkBitInRange($bit, $start, $end);
     }
 }
