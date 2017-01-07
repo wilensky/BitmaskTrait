@@ -42,7 +42,7 @@ trait BitmaskTrait
     /**
      * Performs bitwise OR `|` therefore sets `$bits` as mask
      * @param int $mask
-     * @param int $bits
+     * @param int $bits Decimal bitmask to set
      * @return int
      */
     protected function setBitmask(int $mask, int $bits): int
@@ -51,14 +51,19 @@ trait BitmaskTrait
     }
 
     /**
-     * Performs bitwise OR `|` and set bit on particular position
-     * @param int $mask
-     * @param int $position
+     * Performs bitwise OR `|` and set bit(s) on particular position
+     * @param int $mask Mask to apply changes to
+     * @param int... $positions Variable number of bit positions to set
      * @return int
      */
-    protected function setBit(int $mask, int $position): int
+    protected function setBit(int $mask, int ...$positions): int
     {
-        return (int)($mask | $this->getPositionBitmask($position));
+        return $this->setBitmask(
+            $mask,
+            count($positions) === 1
+                ? $this->getPositionBitmask(reset($positions))
+                : $this->getPositionsBitmask(...$positions)
+        );
     }
 
     /**
@@ -74,14 +79,19 @@ trait BitmaskTrait
     }
 
     /**
-     * Excludes bit on particular position
-     * @param int $mask
-     * @param int $position Bit position
+     * Excludes bit(s) on particular position
+     * @param int $mask Mask to unset bits from
+     * @param int... $positions Variable number of bit positions to unset
      * @return int Result mask
      */
-    protected function unsetBit(int $mask, int $position): int
+    protected function unsetBit(int $mask, int ...$positions): int
     {
-        return (int)($mask & ~$this->getPositionBitmask($position));
+        return $this->unsetBitmask(
+            $mask,
+            count($positions) === 1
+                ? $this->getPositionBitmask(reset($positions))
+                : $this->getPositionsBitmask(...$positions)
+        );
     }
 
     /**

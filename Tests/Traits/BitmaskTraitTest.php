@@ -51,12 +51,20 @@ final class BitmaskTraitTest extends \PHPUnit_Framework_TestCase
 
     public function testSetBit()
     {
-        for ($i = 0; $i < 32; $i++) {
-            $m = $this->setBit(0, $i);
+        for ($i = 0; $i < 29; $i++) {
+            $m = $this->setBit(0, $i, $i+1, $i+2);
 
             $this->assertTrue(
                 $this->hasBit($m, $i),
                 'Failed asserting that bit #' . $i . ' was set in mask `' . $m . '`'
+            );
+            $this->assertTrue(
+                $this->hasBit($m, $i+1),
+                'Failed asserting that bit #' . $i+1 . ' was set in mask `' . $m . '`'
+            );
+            $this->assertTrue(
+                $this->hasBit($m, $i+2),
+                'Failed asserting that bit #' . $i+2 . ' was set in mask `' . $m . '`'
             );
         }
     }
@@ -65,12 +73,20 @@ final class BitmaskTraitTest extends \PHPUnit_Framework_TestCase
     {
         $mask = bindec(strrev(str_repeat('1', 32)));
 
-        for ($i = 0; $i < 32; $i++) {
-            $m = $this->unsetBit($mask, $i);
+        for ($i = 0; $i < 29; $i++) {
+            $m = $this->unsetBit($mask, $i, $i+1, $i+2);
 
             $this->assertFalse(
                 $this->hasBit($m, $i),
                 'Failed asserting that bit #' . $i . ' was unset in mask `' . $m . '`'
+            );
+            $this->assertFalse(
+                $this->hasBit($m, $i+1),
+                'Failed asserting that bit #' . $i+1 . ' was unset in mask `' . $m . '`'
+            );
+            $this->assertFalse(
+                $this->hasBit($m, $i+2),
+                'Failed asserting that bit #' . $i+2 . ' was unset in mask `' . $m . '`'
             );
         }
     }
