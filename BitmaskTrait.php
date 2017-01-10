@@ -136,7 +136,7 @@ trait BitmaskTrait
      * @return $this
      * @throws BitAddressingException
      */
-    protected function checkBitInRange(int $bit, int $start, int $end)
+    protected function isBitInRange(int $bit, int $start, int $end)
     {
         if (!($bit >= $start && $bit <= $end)) {
             throw new BitAddressingException();

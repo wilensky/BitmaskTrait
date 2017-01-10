@@ -157,9 +157,9 @@ final class BitmaskTraitTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider bitRangeDP
      */
-    public function testCheckBitInRange(int $bit, int $start, int $end, bool $isInRange = true)
+    public function testIsBitInRange(int $bit, int $start, int $end, bool $isInRange = true)
     {
         $isInRange ? null : $this->setExpectedException(BAE::class) ;
-        $this->checkBitInRange($bit, $start, $end);
+        $this->isBitInRange($bit, $start, $end);
     }
 }
