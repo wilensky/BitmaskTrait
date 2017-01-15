@@ -14,6 +14,18 @@ final class BitmaskTraitTest extends \PHPUnit_Framework_TestCase
 {
     use BitmaskTrait;
 
+    public function testUse()
+    {
+        $instance = new class {
+            use BitmaskTrait;
+        };
+        
+        $msg = 'Failed asserting that class uses '.BitmaskTrait::class;
+        
+        $this->assertTrue(in_array(BitmaskTrait::class, class_uses($this)), $msg);
+        $this->assertTrue(in_array(BitmaskTrait::class, class_uses($instance)), $msg);
+    }
+    
     public function bitmaskDP(): array
     {
         return [
