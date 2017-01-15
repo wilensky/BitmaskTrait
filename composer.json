@@ -19,7 +19,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Wilensky\\Traits\\": ""
+            "Wilensky\\Traits\\": "",
+            "Wilensky\\Interfaces\\": "Interfaces"
         }
     },
     "require-dev": {
